@@ -1,0 +1,8 @@
+- support any array (more than one dimension)
+- support any type defined by user (is composed of supported types in J2ME):
+	+ support array
+	+ support complex type as one attribute of a complex type.
+	+ support enum
+	+ support exceptions
+- add tutorial
+- it seems that the program doesn't work in the case where there are two arrays?

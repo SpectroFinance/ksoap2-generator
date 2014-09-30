@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>ksoap2</groupId>
+    <artifactId>ksoap2-generating-stub-parent</artifactId>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
+
+  <groupId>fromApache</groupId>
+  <artifactId>axis</artifactId>
+  <name>Changing some code from Apache</name>
+  <packaging>jar</packaging>
+  
+  <description>Reusing code of axis from Apache.</description>
+
+  <!-- build plugin configuration common to all modules -->
+  <build>
+    <plugins>
+      <!-- unpack log4j2me due to its private repository -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+	      <version>2.8</version>
+        <executions>
+          <execution>
+            <id>unpack</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>axis</groupId>
+                  <artifactId>axis</artifactId>
+                  <version>1.4</version>
+                  <overWrite>false</overWrite>
+                  <outputDirectory>${basedir}/target/classes</outputDirectory>
+                  <excludes>org.apache.axis.wsdl.gen.WSDL2</excludes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- java compiler configuration -->
+      <plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-compiler-plugin</artifactId>
+	      <version>3.1</version>
+	    <configuration>
+	      <source>1.5</source>
+          <target>1.5</target>
+	    </configuration>
+      </plugin>
+
+	<!--  <plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-install-plugin</artifactId>
+	    <version>2.4</version>
+	    <executions>
+		    <execution>
+			    <phase>initialize</phase>
+			    <goals>
+				    <goal>install-file</goal>
+			    </goals>
+			    <configuration>
+				    <groupId>${project.groupId}</groupId>
+				    <artifactId>${project.artifactId}</artifactId>
+				    <version>${project.version}</version>
+				    <packaging>jar</packaging>
+				    <file>${basedir}/target/axis-0.1-SNAPSHOT.jar</file>
+			    </configuration>
+		    </execution>
+		    </executions>
+	    </plugin>-->
+
+    </plugins>
+
+
+  </build>
+	<dependencies>
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
+	</dependencies>
+
+</project>

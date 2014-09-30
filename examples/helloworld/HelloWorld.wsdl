@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://helloworld" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://helloworld" xmlns:intf="http://helloworld" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://helloworld" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="say">
+    <complexType>
+     <sequence>
+      <element name="input" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sayResponse">
+    <complexType>
+     <sequence>
+      <element name="sayReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getYear">
+    <complexType/>
+   </element>
+   <element name="getYearResponse">
+    <complexType>
+     <sequence>
+      <element name="getYearReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getYearResponse">
+
+      <wsdl:part element="impl:getYearResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayResponse">
+
+      <wsdl:part element="impl:sayResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayRequest">
+
+      <wsdl:part element="impl:say" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getYearRequest">
+
+      <wsdl:part element="impl:getYear" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="HelloWorld">
+
+      <wsdl:operation name="say">
+
+         <wsdl:input message="impl:sayRequest" name="sayRequest"/>
+
+         <wsdl:output message="impl:sayResponse" name="sayResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getYear">
+
+         <wsdl:input message="impl:getYearRequest" name="getYearRequest"/>
+
+         <wsdl:output message="impl:getYearResponse" name="getYearResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="HelloWorldSoapBinding" type="impl:HelloWorld">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="say">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sayRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sayResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getYear">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getYearRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getYearResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="HelloWorldService">
+
+      <wsdl:port binding="impl:HelloWorldSoapBinding" name="HelloWorld">
+
+         <wsdlsoap:address location="http://localhost:8080/example-1/services/HelloWorld"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
